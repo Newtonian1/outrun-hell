@@ -4,13 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 public class OutrunHell {
     public static void main(String[] args) {
-        Scanner userInput = new Scanner(System.in);
-        System.out.println("...");
-        wait(2);
-        System.out.println("Hey, can you hear me?");
-        wait(2);
-        System.out.println("Nice to meet you, the name's Satan!");
-        wait(2);
+        Character player = new Player("Joe", 10, 3);
+        Event event1 = new CharEvent("String1", "String2");
+        print(CharEvent.promptPlayer().toString());
     }
     public static void wait(int s) {
         try {

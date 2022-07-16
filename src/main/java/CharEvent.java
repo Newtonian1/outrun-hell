@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
-public class CharEvent {
+public class CharEvent extends Event{
+
+    public CharEvent(String stageSettingText, String conclusionText) {
+        super(stageSettingText, conclusionText);
+    }
+
     public static playerChoice promptPlayer() {
         try (Scanner input = new Scanner(System.in)) {
             System.out.println("What do?");

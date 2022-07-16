@@ -1,12 +1,13 @@
 import java.util.Scanner;
 
-public class CharEvent extends Event{
+public class CharEvent extends Event {
 
     public CharEvent(String stageSettingText, String conclusionText) {
         super(stageSettingText, conclusionText);
     }
 
-    public static playerChoice promptPlayer() {
+    public static PlayerChoice promptPlayer() {
+        //Try block implemented to contain and auto-close Scanner
         try (Scanner input = new Scanner(System.in)) {
             System.out.println("What do?");
             System.out.println("1: Attack");
@@ -14,29 +15,25 @@ public class CharEvent extends Event{
             System.out.println("3: Woo");
             System.out.println("4: Bag");
             while (true) {
-                if (input.hasNextInt()) {
-                    int choice = input.nextInt();
-                    switch (choice) {
-                        case 1:
-                            return playerChoice.ATTACK;
-                        case 2:
-                            return playerChoice.BRIBE;
-                        case 3:
-                            return playerChoice.WOO;
-                        case 4:
-                            return playerChoice.BAG;
-                        default:
-                            break;
-                    }
-                } else {
-                    input.next();
+                String choice = input.nextLine();
+                switch (choice) {
+                    case "1":
+                        return PlayerChoice.ATTACK;
+                    case "2":
+                        return PlayerChoice.BRIBE;
+                    case "3":
+                        return PlayerChoice.WOO;
+                    case "4":
+                        return PlayerChoice.BAG;
+                    default:
+                        break;
                 }
                 System.out.println("Please input a number between 1 and 4");
             }
         }
     }
 
-    enum playerChoice {
+    public enum PlayerChoice {
         ATTACK,
         BRIBE,
         WOO,

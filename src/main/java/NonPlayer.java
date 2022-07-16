@@ -6,6 +6,7 @@ public class NonPlayer extends Character{
 
     private String[] catchPhrases;
 
+    //CONSTRUCTOR
     public NonPlayer(String name, int maxHealth, int attack, int money, double wooMin, double greed, String favItemType, String rewardItem, String[] catchPhrases) {
         super(name, maxHealth, attack, money);
         this.wooMin = wooMin;

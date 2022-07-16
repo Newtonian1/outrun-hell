@@ -11,13 +11,17 @@ public class OutrunHell {
         wait(2);
         System.out.println("Nice to meet you, the name's Satan!");
         wait(2);
-
     }
     public static void wait(int s) {
         try {
             TimeUnit.SECONDS.sleep(s);
         }
         catch(InterruptedException ignored) {
+
         }
+    }
+
+    public static void print(String s) {
+        System.out.println(s);
     }
 }

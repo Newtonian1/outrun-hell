@@ -4,11 +4,14 @@ public class NonPlayer extends Character{
     private String favItemType;
     private String rewardItem;
 
-    public NonPlayer(String name, int maxHealth, int attack, int money, double wooMin, double greed, String favItemType, String rewardItem) {
+    private String[] catchPhrases;
+
+    public NonPlayer(String name, int maxHealth, int attack, int money, double wooMin, double greed, String favItemType, String rewardItem, String[] catchPhrases) {
         super(name, maxHealth, attack, money);
         this.wooMin = wooMin;
         this.greed = greed;
         this.favItemType = favItemType;
         this.rewardItem = rewardItem;
+        this.catchPhrases = catchPhrases;
     }
 }

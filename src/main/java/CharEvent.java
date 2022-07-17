@@ -2,10 +2,12 @@ import java.util.Scanner;
 
 public class CharEvent extends Event {
 
+    //CONSTRUCTOR
     public CharEvent(String stageSettingText, String conclusionText) {
         super(stageSettingText, conclusionText);
     }
 
+    //METHODS
     public static PlayerChoice promptPlayer() {
         //Try block implemented to contain and auto-close Scanner
         try (Scanner input = new Scanner(System.in)) {
@@ -33,6 +35,9 @@ public class CharEvent extends Event {
         }
     }
 
+
+
+    //ENUMS
     public enum PlayerChoice {
         ATTACK,
         BRIBE,

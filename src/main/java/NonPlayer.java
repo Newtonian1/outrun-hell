@@ -15,4 +15,21 @@ public class NonPlayer extends Character{
         this.rewardItem = rewardItem;
         this.catchPhrases = catchPhrases;
     }
+
+    //GETTERS
+    public double getWooMin() {
+        return wooMin;
+    }
+
+    public double getGreed() {
+        return greed;
+    }
+
+    public String getFavItemType() {
+        return favItemType;
+    }
+
+    public String getRewardItem() {
+        return rewardItem;
+    }
 }

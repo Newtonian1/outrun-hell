@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CharEvent extends Event {
@@ -68,6 +69,36 @@ public class CharEvent extends Event {
         OutrunHell.print("Special thanks to: Ryan Slama");
     }
     //BRIBE METHODS
+    public boolean tryBribe(Player player) {
+        try (Scanner input = new Scanner(System.in)) {
+            System.out.println("Enter how much money to bribe:");
+            while (true) {
+                String stringBribe = input.nextLine();
+                int bribe;
+                try {
+                    bribe = Integer.parseInt(stringBribe);
+                }
+                catch (InputMismatchException e){
+                    OutrunHell.print("Please enter a valid number");
+                    continue;
+                }
+                if(bribe > 0 && bribe <= player.getMoney()) {
+                    int bribeNeeded = (int)(Math.random() * 100);
+                    if (bribe >= bribeNeeded) {
+                        OutrunHell.print("The bribe has been accepted!");
+                        player.setMoney(player.getMoney() - bribe);
+                        return true;
+                    } else {
+                        OutrunHell.print("The bribe was denied...");
+                        return false;
+                    }
+                } else {
+                    OutrunHell.print("Please enter a valid number");
+                }
+            }
+        }
+    }
+    //Either accepts the bribe (return true, money subtracted) or rejects bribe (return false)
 
     //ENUMS
     public enum PlayerChoice {

@@ -7,7 +7,7 @@ public class CharEvent extends Event {
         super(stageSettingText, conclusionText);
     }
 
-    //METHODS
+    //STATIC METHODS
     public static PlayerChoice promptPlayer() {
         //Try block implemented to contain and auto-close Scanner
         try (Scanner input = new Scanner(System.in)) {
@@ -34,8 +34,40 @@ public class CharEvent extends Event {
             }
         }
     }
+    //ATTACK METHODS
+    public boolean attackAndDeathCheck (Character attacker, Character target) {
+        target.setHealth(target.getHealth() - attacker.getAttack());
+        if (target.getHealth() <= 0) {
+            OutrunHell.print(target.getName() + " was defeated by " + attacker.getName() + ".");
+            return true;
+        } else {
+            OutrunHell.print(attacker.getName() + " dealt " + attacker.getAttack() + " to " + target.getName() + ".");
+            OutrunHell.print(target.getName() + " now has " + target.getHealth() + " health left.");
+            return false;
+        }
+    }
+    //Returns true for dead and false for not dead
 
+    public void nonPlayerKilled(NonPlayer non, Player player) {
+        if (non.getRewardItem().equals("none")) {
+            return;
+        }
+        if (player.hasInventorySpace()) {
+            player.addToInventory(non.getRewardItem());
+            OutrunHell.print(player.getName() + " received " + non.getRewardItem() + " as a reward.");
+        } else {
+            OutrunHell.print("Player inventory is full, so " + non.getRewardItem() + " was left behind.");
+        }
+    }
 
+    public void playerKilledMessage() {
+        OutrunHell.print("GAME OVER");
+        OutrunHell.print("Thank you for playing");
+        OutrunHell.print("--------------------------------------------");
+        OutrunHell.print("Game created by: Joe Ross");
+        OutrunHell.print("Special thanks to: Ryan Slama");
+    }
+    //BRIBE METHODS
 
     //ENUMS
     public enum PlayerChoice {

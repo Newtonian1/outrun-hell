@@ -18,20 +18,16 @@ public class Player extends Character {
         }
     }
 
-    public boolean addToInventory(String item) {
-        if (inventory.size() < maxInventory) {
-            inventory.add(item);
-            return true;
-        }
-        return false;
+    public boolean hasInventorySpace() {
+        return inventory.size() < maxInventory;
     }
 
-    public boolean removeFromInventory(String item) {
-        if (inventory.contains(item)) {
-            inventory.remove(item);
-            return true;
-        }
-        return false;
+    public void addToInventory(String item) {
+            inventory.add(item);
+    }
+
+    public void removeFromInventory(String item) {
+        inventory.remove(item);
     }
 
 }

@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 public class OutrunHell {
     public static void main(String[] args) {
         //Item Map Generation
+
+        /*
         Map<String, String> itemMap = new HashMap<>();
         itemMap.put("grenade", "Damage Item");
         itemMap.put("dynamite", "Damage Item");
@@ -30,18 +32,45 @@ public class OutrunHell {
         itemMap.put("microchip", "Tech Item");
         itemMap.put("rtx 3090", "Tech Item");
         itemMap.put("servo motor", "Tech Item");
+        */
 
-        Character player = new Player("Joe", 10, 3);
-        Event event1 = new CharEvent("String1", "String2");
-        print(CharEvent.promptPlayer().toString());
+        Player player = new Player("Joe", 10, 4);
+        player.setMoney(100);
+        CharEvent event1 = new CharEvent("String1", "String2");
+        NonPlayer npc = new NonPlayer("Freddy", 10, 2, 0, 0.5, "Tech Item", new String[]{"cool", "neat"}, "rtx 3090");
+        while (true) {
+            String playerChoice = CharEvent.promptPlayer().toString();
+            if (playerChoice.equals("ATTACK")) {
+                event1.attackAndDeathCheck(player, npc);
+                if(npc.getHealth() <= 0) {
+                    event1.nonPlayerKilled(player, npc);
+                    break;
+                }
+            } else if (playerChoice.equals("BRIBE")) {
+                OutrunHell.print("Player money: " + player.getMoney());
+                if(event1.tryBribe(player)) {
+                    OutrunHell.print("Player money left: " + player.getMoney());
+                    break;
+                }
+            }
+            wait(2);
+            event1.attackAndDeathCheck(npc, player);
+            wait(2);
+            if (player.getHealth() <= 0) {
+                CharEvent.playerKilledMessage();
+                //Quit program
+                break;
+            }
+        }
+        OutrunHell.print("end");
     }
+
 
     public static void wait(int s) {
         try {
             TimeUnit.SECONDS.sleep(s);
         }
         catch(InterruptedException ignored) {
-
         }
     }
 

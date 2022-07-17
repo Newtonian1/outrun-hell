@@ -11,45 +11,43 @@ public class CharEvent extends Event {
     //STATIC METHODS
     public static PlayerChoice promptPlayer() {
         //Try block implemented to contain and auto-close Scanner
-        try (Scanner input = new Scanner(System.in)) {
-            System.out.println("What do?");
-            System.out.println("1: Attack");
-            System.out.println("2: Bribe");
-            System.out.println("3: Woo");
-            System.out.println("4: Bag");
-            while (true) {
-                String choice = input.nextLine();
-                switch (choice) {
-                    case "1":
-                        return PlayerChoice.ATTACK;
-                    case "2":
-                        return PlayerChoice.BRIBE;
-                    case "3":
-                        return PlayerChoice.WOO;
-                    case "4":
-                        return PlayerChoice.BAG;
-                    default:
-                        break;
-                }
-                System.out.println("Please input a number between 1 and 4");
+        Scanner input = new Scanner(System.in);
+        System.out.println("What do?");
+        System.out.println("1: Attack");
+        System.out.println("2: Bribe");
+        System.out.println("3: Woo");
+        System.out.println("4: Bag");
+        while (true) {
+            String choice = input.nextLine();
+            switch (choice) {
+                case "1":
+                    return PlayerChoice.ATTACK;
+                case "2":
+                    return PlayerChoice.BRIBE;
+                case "3":
+                    return PlayerChoice.WOO;
+                case "4":
+                    return PlayerChoice.BAG;
+                default:
+                    break;
             }
+            System.out.println("Please input a number between 1 and 4");
         }
     }
+
     //ATTACK METHODS
-    public boolean attackAndDeathCheck (Character attacker, Character target) {
+    public void attackAndDeathCheck(Character attacker, Character target) {
         target.setHealth(target.getHealth() - attacker.getAttack());
         if (target.getHealth() <= 0) {
             OutrunHell.print(target.getName() + " was defeated by " + attacker.getName() + ".");
-            return true;
         } else {
             OutrunHell.print(attacker.getName() + " dealt " + attacker.getAttack() + " to " + target.getName() + ".");
             OutrunHell.print(target.getName() + " now has " + target.getHealth() + " health left.");
-            return false;
         }
     }
     //Returns true for dead and false for not dead
 
-    public void nonPlayerKilled(NonPlayer non, Player player) {
+    public void nonPlayerKilled(Player player, NonPlayer non) {
         if (non.getRewardItem().equals("none")) {
             return;
         }
@@ -61,42 +59,42 @@ public class CharEvent extends Event {
         }
     }
 
-    public void playerKilledMessage() {
+    public static void playerKilledMessage() {
         OutrunHell.print("GAME OVER");
         OutrunHell.print("Thank you for playing");
         OutrunHell.print("--------------------------------------------");
         OutrunHell.print("Game created by: Joe Ross");
         OutrunHell.print("Special thanks to: Ryan Slama");
     }
+
     //BRIBE METHODS
     public boolean tryBribe(Player player) {
-        try (Scanner input = new Scanner(System.in)) {
-            System.out.println("Enter how much money to bribe:");
-            while (true) {
-                String stringBribe = input.nextLine();
-                int bribe;
-                try {
-                    bribe = Integer.parseInt(stringBribe);
-                }
-                catch (InputMismatchException e){
-                    OutrunHell.print("Please enter a valid number");
-                    continue;
-                }
-                if(bribe > 0 && bribe <= player.getMoney()) {
-                    int bribeNeeded = (int)(Math.random() * 100);
-                    if (bribe >= bribeNeeded) {
-                        OutrunHell.print("The bribe has been accepted!");
-                        player.setMoney(player.getMoney() - bribe);
-                        return true;
-                    } else {
-                        OutrunHell.print("The bribe was denied...");
-                        return false;
-                    }
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter how much money to bribe:");
+        while (true) {
+            String stringBribe = input.nextLine();
+            int bribe;
+            try {
+                bribe = Integer.parseInt(stringBribe);
+            } catch (InputMismatchException e) {
+                OutrunHell.print("Please enter a valid number");
+                continue;
+            }
+            if (bribe > 0 && bribe <= player.getMoney()) {
+                int bribeNeeded = (int) (Math.random() * 100);
+                if (bribe >= bribeNeeded) {
+                    OutrunHell.print("The bribe has been accepted!");
+                    player.setMoney(player.getMoney() - bribe);
+                    return true;
                 } else {
-                    OutrunHell.print("Please enter a valid number");
+                    OutrunHell.print("The bribe was denied...");
+                    return false;
                 }
+            } else {
+                OutrunHell.print("Please enter a valid number");
             }
         }
+
     }
     //Either accepts the bribe (return true, money subtracted) or rejects bribe (return false)
 

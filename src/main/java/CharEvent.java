@@ -12,7 +12,7 @@ public class CharEvent extends Event {
     public static PlayerChoice promptPlayer() {
         //Try block implemented to contain and auto-close Scanner
         Scanner input = new Scanner(System.in);
-        System.out.println("What do?");
+        System.out.println("Type a number and hit enter to select an action:");
         System.out.println("1: Attack");
         System.out.println("2: Bribe");
         System.out.println("3: Woo");
@@ -79,12 +79,12 @@ public class CharEvent extends Event {
             int bribe;
             try {
                 bribe = Integer.parseInt(stringBribe);
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 OutrunHell.print("Please enter a valid number");
                 continue;
             }
             if (bribe > 0 && bribe <= player.getMoney()) {
-                int bribeNeeded = (int) (Math.random() * 100);
+                int bribeNeeded = (int)(Math.random() * 100) + 1;
                 if (bribe >= bribeNeeded) {
                     OutrunHell.print("The bribe has been accepted!");
                     player.setMoney(player.getMoney() - bribe);

@@ -38,6 +38,10 @@ public class OutrunHell {
         player.setMoney(100);
         CharEvent event1 = new CharEvent("String1", "String2");
         NonPlayer npc = new NonPlayer("Freddy", 10, 2, 30, 0.5, "Tech Item", new String[]{"cool", "neat"}, "rtx 3090");
+        OutrunHell.print(npc.getName() + " wants to fight!");
+        wait(2);
+        OutrunHell.print(player.getName() + " has " + player.getHealth() + " health and $" + player.getMoney() + ".");
+        wait(2);
         while (true) {
             String playerChoice = CharEvent.promptPlayer().toString();
             if (playerChoice.equals("ATTACK")) {

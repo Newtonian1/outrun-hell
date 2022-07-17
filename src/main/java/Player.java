@@ -14,7 +14,7 @@ public class Player extends Character {
     public void printInventory() {
         OutrunHell.print("Items in bag:");
         for (String item : inventory) {
-            System.out.print(item + " ");
+            System.out.print(item + "   ");
         }
     }
 
@@ -29,5 +29,4 @@ public class Player extends Character {
     public void removeFromInventory(String item) {
         inventory.remove(item);
     }
-
 }

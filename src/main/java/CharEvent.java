@@ -200,4 +200,62 @@ public class CharEvent extends Event {
         WOO,
         BAG
     }
+
+    //RUN CHARACTER EVENT METHOD
+    public static void runCharEvent(CharEvent event, Player player, NonPlayer npc) {
+        OutrunHell.print(event.stageSettingText);
+        OutrunHell.print("dividerLine");
+        OutrunHell.wait(2);
+        OutrunHell.print(npc.getName() + " wants to fight!");
+        OutrunHell.print("dividerLine");
+        OutrunHell.wait(2);
+        OutrunHell.print(player.getName() + " has " + player.getHealth() + " health and $" + player.getMoney() + ".");
+        OutrunHell.print("dividerLine");
+        while (true) {
+            String playerChoice = CharEvent.promptPlayer().toString();
+            if (playerChoice.equals("ATTACK")) {
+                event.attackAndDeathCheck(player, npc);
+                if(npc.getHealth() <= 0) {
+                    event.nonPlayerKilled(player, npc);
+                    break;
+                }
+            } else if (playerChoice.equals("BRIBE")) {
+                OutrunHell.print("Player money: $" + player.getMoney());
+                if(event.tryBribe(player)) {
+                    OutrunHell.print("Player money left: $" + player.getMoney());
+                    break;
+                }
+            } else if (playerChoice.equals("WOO")) {
+                OutrunHell.print(player.getName() + " tried to sweet-talk " + npc.getName() + ".");
+                if(event.tryWoo(npc)) {
+                    OutrunHell.print(player.getName() + " successfully won " + npc.getName() + " over!");
+                    break;
+                }
+                OutrunHell.print(npc.getName() + " was not impressed by the attempted flattery.");
+            } else if (playerChoice.equals("BAG")) {
+                String bagResult = event.openBag(player, npc);
+                if (bagResult.equals("close")) {
+                    continue;
+                } else if (bagResult.equals("given")) {
+                    break;
+                }
+                if(npc.getHealth() <= 0) {
+                    event.nonPlayerKilled(player, npc);
+                    break;
+                }
+            }
+            OutrunHell.print("dividerLine");
+            OutrunHell.wait(2);
+            event.attackAndDeathCheck(npc, player);
+            OutrunHell.print("dividerLine");
+            OutrunHell.wait(2);
+            if (player.getHealth() <= 0) {
+                CharEvent.playerKilledMessage();
+                //Quit program
+                break;
+            }
+        }
+        OutrunHell.print("dividerLine");
+        OutrunHell.print(event.conclusionText);
+    }
 }

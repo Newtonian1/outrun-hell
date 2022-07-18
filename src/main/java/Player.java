@@ -22,7 +22,7 @@ public class Player extends Character {
             i++;
         }
         OutrunHell.print(" ");
-        OutrunHell.print("------------------------------------------------------------");
+        OutrunHell.print("dividerLine");
     }
 
     public int getInventorySize(){

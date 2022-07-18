@@ -8,7 +8,6 @@ public class OutrunHell {
     public static void main(String[] args) {
         //Item Map Generation
 
-        /*
         Map<String, String> itemMap = new HashMap<>();
         itemMap.put("grenade", "Damage Item");
         itemMap.put("dynamite", "Damage Item");
@@ -16,7 +15,7 @@ public class OutrunHell {
         itemMap.put("hell rocket", "Damage Item");
 
         itemMap.put("first aid kit", "Heal Item");
-        itemMap.put("fiji water", "Heal Item");
+        itemMap.put("health potion", "Heal Item");
 
         itemMap.put("claw fossil", "Artifact Item");
         itemMap.put("ancient scroll", "Artifact Item");
@@ -32,16 +31,31 @@ public class OutrunHell {
         itemMap.put("microchip", "Tech Item");
         itemMap.put("rtx 3090", "Tech Item");
         itemMap.put("servo motor", "Tech Item");
-        */
 
+        //Generating player and npc
         Player player = new Player("Joe", 10, 4);
         player.setMoney(100);
-        CharEvent event1 = new CharEvent("String1", "String2");
+        player.addToInventory("rtx 3090");
+        player.addToInventory("rtx 3090");
+        player.addToInventory("servo motor");
+        player.addToInventory("rtx 3090");
+        player.addToInventory("first aid kit");
+        player.addToInventory("first aid kit");
+        player.addToInventory("grenade");
+        player.addToInventory("ancient scroll");
+        player.addToInventory("ancient scroll");
+        player.addToInventory("ancient scroll");
+        player.printInventory();
         NonPlayer npc = new NonPlayer("Freddy", 10, 2, 30, 0.5, "Tech Item", new String[]{"cool", "neat"}, "rtx 3090");
+
+        //Event generation
+        CharEvent event1 = new CharEvent("String1", "String2");
         OutrunHell.print(npc.getName() + " wants to fight!");
         OutrunHell.wait(2);
         OutrunHell.print(player.getName() + " has " + player.getHealth() + " health and $" + player.getMoney() + ".");
         OutrunHell.wait(2);
+
+        //Prompting and resolving player choice
         while (true) {
             String playerChoice = CharEvent.promptPlayer().toString();
             if (playerChoice.equals("ATTACK")) {
@@ -63,6 +77,8 @@ public class OutrunHell {
                     break;
                 }
                 OutrunHell.print(npc.getName() + " was not impressed by the attempted flattery.");
+            } else if (playerChoice.equals("BAG")) {
+                player.printInventory();
             }
             OutrunHell.wait(2);
             event1.attackAndDeathCheck(npc, player);

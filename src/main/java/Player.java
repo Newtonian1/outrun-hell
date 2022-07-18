@@ -12,10 +12,17 @@ public class Player extends Character {
 
     //INVENTORY MANAGEMENT
     public void printInventory() {
+        int i = 1;
         OutrunHell.print("Items in bag:");
         for (String item : inventory) {
-            System.out.print(item + "   ");
+            System.out.print(i + ") " + item + "   ");
+            if (i % 4 == 0) {
+                OutrunHell.print(" ");
+            }
+            i++;
         }
+        OutrunHell.print(" ");
+        OutrunHell.print("------------------------------------------------------------");
     }
 
     public boolean hasInventorySpace() {

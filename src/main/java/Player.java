@@ -25,6 +25,10 @@ public class Player extends Character {
         OutrunHell.print("------------------------------------------------------------");
     }
 
+    public int getInventorySize(){
+        return inventory.size();
+    }
+
     public boolean hasInventorySpace() {
         return inventory.size() < maxInventory;
     }
@@ -35,5 +39,9 @@ public class Player extends Character {
 
     public void removeFromInventory(String item) {
         inventory.remove(item);
+    }
+
+    public String selectItem (int itemChoice) {
+        return inventory.get(itemChoice - 1);
     }
 }

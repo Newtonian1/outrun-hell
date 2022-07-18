@@ -6,32 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 public class OutrunHell {
     public static void main(String[] args) {
-        //Item Map Generation
-
-        Map<String, String> itemMap = new HashMap<>();
-        itemMap.put("grenade", "Damage Item");
-        itemMap.put("dynamite", "Damage Item");
-        itemMap.put("pipe bomb", "Damage Item");
-        itemMap.put("hell rocket", "Damage Item");
-
-        itemMap.put("first aid kit", "Heal Item");
-        itemMap.put("health potion", "Heal Item");
-
-        itemMap.put("claw fossil", "Artifact Item");
-        itemMap.put("ancient scroll", "Artifact Item");
-        itemMap.put("egyptian scarab", "Artifact Item");
-        itemMap.put("stone tablet", "Artifact Item");
-
-        itemMap.put("rolex watch", "Valuable Item");
-        itemMap.put("pearl necklace", "Valuable Item");
-        itemMap.put("gold ring", "Valuable Item");
-        itemMap.put("black diamond", "Valuable Item");
-
-        itemMap.put("flash drive", "Tech Item");
-        itemMap.put("microchip", "Tech Item");
-        itemMap.put("rtx 3090", "Tech Item");
-        itemMap.put("servo motor", "Tech Item");
-
         //Generating player and npc
         Player player = new Player("Joe", 10, 4);
         player.setMoney(100);
@@ -45,7 +19,6 @@ public class OutrunHell {
         player.addToInventory("ancient scroll");
         player.addToInventory("ancient scroll");
         player.addToInventory("ancient scroll");
-        player.printInventory();
         NonPlayer npc = new NonPlayer("Freddy", 10, 2, 30, 0.5, "Tech Item", new String[]{"cool", "neat"}, "rtx 3090");
 
         //Event generation
@@ -78,7 +51,16 @@ public class OutrunHell {
                 }
                 OutrunHell.print(npc.getName() + " was not impressed by the attempted flattery.");
             } else if (playerChoice.equals("BAG")) {
-                player.printInventory();
+                String bagResult = event1.openBag(player, npc);
+                if (bagResult.equals("close")) {
+                    continue;
+                } else if (bagResult.equals("given")) {
+                    break;
+                }
+                if(npc.getHealth() <= 0) {
+                    event1.nonPlayerKilled(player, npc);
+                    break;
+                }
             }
             OutrunHell.wait(2);
             event1.attackAndDeathCheck(npc, player);

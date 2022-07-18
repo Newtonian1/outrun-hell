@@ -20,12 +20,15 @@ public class OutrunHell {
         player.addToInventory("ancient scroll");
         player.addToInventory("ancient scroll");
         NonPlayer npc1 = new NonPlayer("Freddy", 10, 2, 30, 0.5, "Tech Item", new String[]{"cool", "neat"}, "rtx 3090");
+        NonPlayer npc2 = new NonPlayer("Katie", 12, 3, 50, 0.7, "Valuable Item", new String[]{"cool", "neat"}, "first aid kit");
 
         //Event generation
         CharEvent event1 = new CharEvent("Start of event 1", "Conclusion to event 1");
+        CharEvent event2 = new CharEvent("Start of event 2", "Conclusion to event 2");
 
         //Prompting and resolving player choice
         CharEvent.runCharEvent(event1, player, npc1);
+        CharEvent.runCharEvent(event2, player, npc2);
     }
 
     public static void wait(int s) {

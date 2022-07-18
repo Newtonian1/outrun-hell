@@ -40,7 +40,13 @@ public class CharEvent extends Event {
     public void attackAndDeathCheck(Character attacker, Character target) {
         target.setHealth(target.getHealth() - attacker.getAttack());
         if (target.getHealth() <= 0) {
+            OutrunHell.print(attacker.getName() + " dealt " + attacker.getAttack() + " to " + target.getName() + ".");
+            OutrunHell.print(target.getName() + " now has 0 health left.");
+            OutrunHell.print("dividerLine");
+            OutrunHell.wait(2);
             OutrunHell.print(target.getName() + " was defeated by " + attacker.getName() + ".");
+            OutrunHell.print("dividerLine");
+            OutrunHell.wait(2);
         } else {
             OutrunHell.print(attacker.getName() + " dealt " + attacker.getAttack() + " to " + target.getName() + ".");
             OutrunHell.print(target.getName() + " now has " + target.getHealth() + " health left.");
@@ -59,6 +65,8 @@ public class CharEvent extends Event {
             OutrunHell.print("Player inventory is full, so " + non.getRewardItem() + " was left behind.");
         }
         player.setMoney(player.getMoney() + non.getMoney());
+        OutrunHell.print("dividerLine");
+        OutrunHell.wait(2);
         OutrunHell.print(non.getName() + " had $" + non.getMoney() + ". Finders keepers!");
         OutrunHell.print(player.getName() + " now has $" + player.getMoney() + ".");
     }
@@ -180,6 +188,13 @@ public class CharEvent extends Event {
                 }
                 OutrunHell.print("The " + itemName + " did 8 damage to " + non.getName() + "!");
                 OutrunHell.print(non.getName() + " now has " + healthLeft + " health left.");
+                if (healthLeft == 0) {
+                    OutrunHell.print("dividerLine");
+                    OutrunHell.wait(2);
+                    OutrunHell.print(non.getName() + " was defeated by " + player.getName() + ".");
+                    OutrunHell.print("dividerLine");
+                    OutrunHell.wait(2);
+                }
                 break;
             case "Heal Item":
                 player.setHealth(player.getHealth() + (player.getMaxHealth() / 2));
@@ -205,7 +220,7 @@ public class CharEvent extends Event {
     public static void runCharEvent(CharEvent event, Player player, NonPlayer npc) {
         OutrunHell.print(event.stageSettingText);
         OutrunHell.print("dividerLine");
-        OutrunHell.wait(2);
+        OutrunHell.wait(4);
         OutrunHell.print(npc.getName() + " wants to fight!");
         OutrunHell.print("dividerLine");
         OutrunHell.wait(2);
@@ -256,6 +271,9 @@ public class CharEvent extends Event {
             }
         }
         OutrunHell.print("dividerLine");
+        OutrunHell.wait(2);
         OutrunHell.print(event.conclusionText);
+        OutrunHell.print("dividerLine");
+        OutrunHell.wait(4);
     }
 }

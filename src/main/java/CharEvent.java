@@ -133,6 +133,12 @@ public class CharEvent extends Event {
             if (itemInt > 0 && itemInt <= player.getInventorySize()) {
                 String itemName = player.selectItem(itemInt);
                 String itemType = getItemType(itemName);
+                if (itemType.equals("Heal Item") && player.getHealth() == player.getMaxHealth()) {
+                    OutrunHell.print("Item cannot be used (Player is already at full health).");
+                    OutrunHell.print("dividerLine");
+                    OutrunHell.wait(2);
+                    return "close";
+                }
                 if (itemType.equals("Damage Item") || itemType.equals("Heal Item")) {
                     useItem(itemName, itemType, player, non);
                     player.removeFromInventory(itemName);
@@ -220,7 +226,7 @@ public class CharEvent extends Event {
     public static void runCharEvent(CharEvent event, Player player, NonPlayer npc) {
         OutrunHell.print(event.stageSettingText);
         OutrunHell.print("dividerLine");
-        OutrunHell.wait(4);
+        OutrunHell.wait(2);
         OutrunHell.print(npc.getName() + " wants to fight!");
         OutrunHell.print("dividerLine");
         OutrunHell.wait(2);
@@ -274,6 +280,6 @@ public class CharEvent extends Event {
         OutrunHell.wait(2);
         OutrunHell.print(event.conclusionText);
         OutrunHell.print("dividerLine");
-        OutrunHell.wait(4);
+        OutrunHell.wait(2);
     }
 }

@@ -93,13 +93,16 @@ public class CharEvent extends Event {
                 continue;
             }
             if (bribe > 0 && bribe <= player.getMoney()) {
+                OutrunHell.print(player.getName() + " offered a bribe of $" + bribe + ".");
+                OutrunHell.print("dividerLine");
+                OutrunHell.wait(2);
                 int bribeNeeded = (int)(Math.random() * 100) + 1;
                 if (bribe >= bribeNeeded) {
-                    OutrunHell.print("The bribe has been accepted!");
+                    OutrunHell.print("The bribe was accepted!");
                     player.setMoney(player.getMoney() - bribe);
                     return true;
                 } else {
-                    OutrunHell.print("The bribe was denied...");
+                    OutrunHell.print("The bribe was rejected. Better luck next time...");
                     return false;
                 }
             } else {
@@ -232,6 +235,7 @@ public class CharEvent extends Event {
         OutrunHell.wait(2);
         OutrunHell.print(player.getName() + " has " + player.getHealth() + " health and $" + player.getMoney() + ".");
         OutrunHell.print("dividerLine");
+        OutrunHell.wait(2);
         while (true) {
             String playerChoice = CharEvent.promptPlayer().toString();
             if (playerChoice.equals("ATTACK")) {

@@ -46,4 +46,9 @@ public class OutrunHell {
             System.out.println(s);
         }
     }
+
+    public static void divider() {
+        print("dividerLine");
+        wait(2);
+    }
 }

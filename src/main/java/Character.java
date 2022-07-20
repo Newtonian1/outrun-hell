@@ -5,13 +5,16 @@ abstract public class Character {
     protected int attack;
     protected int money;
 
-    //CONSTRUCTOR
+    //CONSTRUCTORS
     public Character(String name, int maxHealth, int attack, int money) {
         this.name = name;
         this.maxHealth = maxHealth;
         this.attack = attack;
         this.health = maxHealth;
         this.money = money;
+    }
+
+    public Character() {
     }
 
     //SETTERS

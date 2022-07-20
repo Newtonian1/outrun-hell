@@ -11,7 +11,7 @@ public class Player extends Character {
 
     //CONSTRUCTOR
     public Player(String name, int maxHealth, int attack) {
-        super(name, maxHealth, attack, 0);
+        super(name, maxHealth, attack, 50);
     }
 
     //INVENTORY MANAGEMENT

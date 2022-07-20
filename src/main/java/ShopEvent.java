@@ -56,17 +56,27 @@ public class ShopEvent extends Event {
                 int cost = itemPrices.get(choice);
                 if (player.getMoney() >= cost) {
                     if (choice.equals("brass knuckles")) {
+                        if (player.getHasBrassKnuckles()) {
+                            OutrunHell.print(player.getName() + " already has brass knuckles.");
+                            continue;
+                        }
                         player.setMoney(player.getMoney() - cost);
                         player.setAttack(player.getAttack() + 1);
+                        player.setHasBrassKnuckles(true);
                         OutrunHell.print(player.getName() + " purchased " + choice + " for $" + cost);
                         OutrunHell.print(player.getName() + " now has $" + player.getMoney());
                         OutrunHell.divider();
                         OutrunHell.print(player.getName() + "'s attack was increased!");
                         OutrunHell.print("dividerLine");
                     } else if (choice.equals("armored vest")) {
+                        if (player.getHasArmoredVest()) {
+                            OutrunHell.print(player.getName() + " already has armored vest.");
+                            continue;
+                        }
                         player.setMoney(player.getMoney() - cost);
                         player.setMaxHealth(player.getMaxHealth() + 2);
                         player.setHealth(player.getHealth() + 2);
+                        player.setHasArmoredVest(true);
                         if (player.getHealth() > player.getMaxHealth()) {
                             player.setHealth(player.getMaxHealth());
                         }

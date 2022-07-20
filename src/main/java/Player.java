@@ -5,6 +5,10 @@ public class Player extends Character {
     private List<String> inventory = new ArrayList<>();
     private int maxInventory = 12;
 
+    private boolean hasBrassKnuckles = false;
+
+    private boolean hasArmoredVest = false;
+
     //CONSTRUCTOR
     public Player(String name, int maxHealth, int attack) {
         super(name, maxHealth, attack, 0);
@@ -23,6 +27,22 @@ public class Player extends Character {
         }
         OutrunHell.print(" ");
         OutrunHell.print("dividerLine");
+    }
+
+    public boolean getHasBrassKnuckles() {
+        return hasBrassKnuckles;
+    }
+
+    public void setHasBrassKnuckles(boolean hasBrassKnuckles) {
+        this.hasBrassKnuckles = hasBrassKnuckles;
+    }
+
+    public boolean getHasArmoredVest() {
+        return hasArmoredVest;
+    }
+
+    public void setHasArmoredVest(boolean hasArmoredVest) {
+        this.hasArmoredVest = hasArmoredVest;
     }
 
     public int getInventorySize(){

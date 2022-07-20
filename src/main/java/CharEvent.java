@@ -11,13 +11,12 @@ public class CharEvent extends Event {
 
     //STATIC METHODS
     public static PlayerChoice promptPlayer() {
-        //Try block implemented to contain and auto-close Scanner
         Scanner input = new Scanner(System.in);
-        System.out.println("Type a number and hit enter to select an action:");
-        System.out.println("1: Attack");
-        System.out.println("2: Bribe");
-        System.out.println("3: Woo");
-        System.out.println("4: Bag");
+        OutrunHell.print("Type a number and hit enter to select an action:");
+        OutrunHell.print("1: Attack");
+        OutrunHell.print("2: Bribe");
+        OutrunHell.print("3: Woo");
+        OutrunHell.print("4: Bag");
         while (true) {
             String choice = input.nextLine();
             switch (choice) {
@@ -32,7 +31,7 @@ public class CharEvent extends Event {
                 default:
                     break;
             }
-            System.out.println("Please input a number between 1 and 4");
+            OutrunHell.print("Please input a number between 1 and 4");
         }
     }
 
@@ -79,7 +78,7 @@ public class CharEvent extends Event {
     //BRIBE METHODS
     public boolean tryBribe(Player player) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter how much money to bribe:");
+        OutrunHell.print("Enter how much money to bribe:");
         while (true) {
             String stringBribe = input.nextLine();
             int bribe;

@@ -4,12 +4,26 @@ import java.util.Scanner;
 
 public class CharEvent extends Event {
 
-    //CONSTRUCTOR
+    //CONSTRUCTORS
     public CharEvent(String stageSettingText, String conclusionText) {
         super(stageSettingText, conclusionText);
     }
 
+    public CharEvent() {}
+
     //STATIC METHODS
+    public static CharEvent genCharEvent(int eventNumber) {
+        CharEvent event = new CharEvent();
+        switch (eventNumber) {
+            case 1:
+                event.stageSettingText = "";
+                event.conclusionText = "";
+        }
+        return event;
+    }
+
+
+
     public static PlayerChoice promptPlayer() {
         Scanner input = new Scanner(System.in);
         OutrunHell.print("Type a number and hit enter to select an action:");

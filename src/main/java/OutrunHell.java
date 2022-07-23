@@ -13,7 +13,7 @@ public class OutrunHell {
         player.addToInventory("first aid kit");
         player.addToInventory("grenade");
         NonPlayer npc;
-        npc = NonPlayer.genNonPlayer("Tobey Maguire");
+        npc = NonPlayer.genNonPlayer("Adolf");
 
         //Event generation
         ShopEvent shop = new ShopEvent("Shop event alert!", "End of shop event");

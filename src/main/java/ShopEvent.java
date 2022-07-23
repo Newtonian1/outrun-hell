@@ -50,7 +50,7 @@ public class ShopEvent extends Event {
         while (true) {
             printShop(itemPrices);
             OutrunHell.print("Player " + player.getName() + " has $" + player.getMoney() + ".");
-            OutrunHell.print("Enter the name of an item to buy it or enter 0 to exit the shop:");
+            OutrunHell.print("Enter the name of an item to buy it, enter 1 to display your inventory, or enter 0 to exit the shop:");
             String choice = input.nextLine().toLowerCase();
             if (itemPrices.containsKey(choice)) {
                 int cost = itemPrices.get(choice);
@@ -116,9 +116,12 @@ public class ShopEvent extends Event {
                 }
             } else if (choice.equals("0")) {
                 return;
+            } else if (choice.equals("1")) {
+                player.printInventory();
+                OutrunHell.wait(2);
             } else {
                 OutrunHell.print("Please enter a valid input");
-                OutrunHell.print("dividerLine");
+                OutrunHell.divider();
             }
         }
     }

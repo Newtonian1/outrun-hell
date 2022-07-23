@@ -129,11 +129,13 @@ public class ShopEvent extends Event {
     public static void runShopEvent(ShopEvent event, Player player) {
         OutrunHell.print(event.stageSettingText);
         OutrunHell.divider();
+        OutrunHell.wait(1);
         int shopSize = 2 + (int)(Math.random() * 3);
         Map<String, Integer> shopItemPrices = new HashMap<>();
         generateShopItems(shopItemPrices, shopSize);
         selectItem(shopItemPrices, player);
         OutrunHell.print(event.conclusionText);
         OutrunHell.divider();
+        OutrunHell.wait(4);
     }
 }

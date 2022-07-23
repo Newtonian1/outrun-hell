@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player extends Character {
     private List<String> inventory = new ArrayList<>();
@@ -12,6 +13,20 @@ public class Player extends Character {
     //CONSTRUCTOR
     public Player(String name, int maxHealth, int attack) {
         super(name, maxHealth, attack, 50);
+    }
+
+    //SET PLAYER NAME
+    public void setPlayerName() {
+        Scanner input = new Scanner(System.in);
+        OutrunHell.print("Please enter a name for your character:");
+        while (true) {
+            String name = input.nextLine();
+            if (name.length() <= 15) {
+                this.name = name;
+                return;
+            }
+            OutrunHell.print("Please enter a name that is 15 characters or less:");
+        }
     }
 
     //INVENTORY MANAGEMENT

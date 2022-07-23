@@ -9,20 +9,45 @@ public class CharEvent extends Event {
         super(stageSettingText, conclusionText);
     }
 
-    public CharEvent() {}
+    public CharEvent(){}
 
     //STATIC METHODS
     public static CharEvent genCharEvent(int eventNumber) {
         CharEvent event = new CharEvent();
         switch (eventNumber) {
+            case 0:
+                event.stageSettingText = "Start of event 1";
+                event.conclusionText = "End of event 1";
+                break;
             case 1:
-                event.stageSettingText = "";
-                event.conclusionText = "";
+                event.stageSettingText = "Start of event 2";
+                event.conclusionText = "End of event 2";
+                break;
+            case 2:
+                event.stageSettingText = "Start of event 3";
+                event.conclusionText = "End of event 3";
+                break;
+            case 3:
+                event.stageSettingText = "Start of event 4";
+                event.conclusionText = "End of event 4";
+                break;
+            case 4:
+                event.stageSettingText = "Start of event 5";
+                event.conclusionText = "End of event 5";
+                break;
+            case 5:
+                event.stageSettingText = "Start of event 6";
+                event.conclusionText = "End of event 6";
+                break;
+            case 6:
+                event.stageSettingText = "Start of event 7";
+                event.conclusionText = "End of event 7";
+                break;
+            default:
+                break;
         }
         return event;
     }
-
-
 
     public static PlayerChoice promptPlayer() {
         Scanner input = new Scanner(System.in);
@@ -87,6 +112,8 @@ public class CharEvent extends Event {
         OutrunHell.print("--------------------------------------------");
         OutrunHell.print("Game created by: Joe Ross");
         OutrunHell.print("Special thanks to: Ryan Slama");
+        OutrunHell.wait(10);
+        System.exit(0);
     }
 
     //BRIBE METHODS
@@ -238,6 +265,7 @@ public class CharEvent extends Event {
         OutrunHell.divider();
         OutrunHell.print(npc.getIntroText());
         OutrunHell.divider();
+        OutrunHell.wait(2);
         OutrunHell.print(player.getName() + " has " + player.getHealth() + " health and $" + player.getMoney() + ".");
         OutrunHell.divider();
         while (true) {
@@ -287,5 +315,6 @@ public class CharEvent extends Event {
         OutrunHell.divider();
         OutrunHell.print(event.conclusionText);
         OutrunHell.divider();
+        OutrunHell.wait(2);
     }
 }

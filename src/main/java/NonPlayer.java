@@ -2,9 +2,7 @@ public class NonPlayer extends Character{
     private double wooMin;
     private String favItemType;
     private String rewardItem = "none";
-
     private String introText;
-
     private String[] catchPhrases;
 
     //CONSTRUCTORS
@@ -77,7 +75,7 @@ public class NonPlayer extends Character{
                 npc.wooMin = 0.90;
                 npc.favItemType = "none";
                 npc.rewardItem = "none";
-                npc.introText = "Adolf: You shouldn't really be surprised to se me here";
+                npc.introText = "Adolf: You shouldn't really be surprised to see me here";
                 npc.catchPhrases = new String[]{"I wish I got into art school...", "Why don't I have any friends?", "Yesterday I overheard Stalin call me a bad person", "Not even the other evil people like me..."};
                 break;
             case "Vlad":
@@ -163,6 +161,8 @@ public class NonPlayer extends Character{
                 npc.rewardItem = "health potion";
                 npc.introText = "...";
                 npc.catchPhrases = new String[]{"...", "...", "...", "..."};
+                break;
+            default:
                 break;
         }
         return npc;

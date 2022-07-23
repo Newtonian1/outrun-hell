@@ -13,7 +13,7 @@ public class OutrunHell {
         player.addToInventory("first aid kit");
         player.addToInventory("grenade");
         NonPlayer npc;
-        npc = new NonPlayer("Freddy", 10, 2, 30, 0.5, "Tech Item", new String[]{"cool", "neat"}, "rtx 3090");
+        npc = new NonPlayer("Freddy", 10, 2, 30, 0.8, "Tech Item", new String[]{"cool", "neat"}, "rtx 3090");
 
         //Event generation
         ShopEvent shop = new ShopEvent("Shop event alert!", "End of shop event");

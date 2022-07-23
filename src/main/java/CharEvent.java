@@ -108,6 +108,7 @@ public class CharEvent extends Event {
     }
     //Either accepts the bribe (return true, money subtracted) or rejects bribe (return false)
 
+
     //WOO METHODS
     public boolean tryWoo(NonPlayer non) {
         double woo = Math.random();

@@ -3,6 +3,8 @@ public class NonPlayer extends Character{
     private String favItemType;
     private String rewardItem = "none";
 
+    private String introText;
+
     private String[] catchPhrases;
 
     //CONSTRUCTORS
@@ -29,19 +31,30 @@ public class NonPlayer extends Character{
         return rewardItem;
     }
 
+    public String getIntroText() {
+        return introText;
+    }
+
+    public String getCatchPhrase() {
+        int phraseNumber = (int)(Math.random() * 4);
+        return catchPhrases[phraseNumber];
+    }
+
     //NPC GENERATOR
     public static NonPlayer genNonPlayer(String npcName) {
         NonPlayer npc = new NonPlayer();
         switch (npcName) {
-            case "Joe":
+            case "Tobey Maguire":
                 npc.name = npcName;
                 npc.maxHealth = 10;
-                npc.attack = 2;
-                npc.money = 35;
-                npc.wooMin = 0.7;
-                npc.favItemType = "Tech Item";
-                npc.rewardItem = "rtx 3090";
-                npc.catchPhrases = new String[]{"nice", "cool"};
+                npc.health = npc.getMaxHealth();
+                npc.attack = 3;
+                npc.money = 50;
+                npc.wooMin = 0.75;
+                npc.favItemType = "none";
+                npc.rewardItem = "none";
+                npc.introText = "The name's Maguire... Tobey Maguire. I know what you're probably thinking, what is Tobey doing here... have you seen Spiderman 3?";
+                npc.catchPhrases = new String[]{"Ow, my back!", "I'm gonna put some dirt in your eye", "You'll get your rent when you fix this damn door!", "You want forgiveness? Get religion."};
                 break;
             case "Beth":
                 npc.name = npcName;
@@ -51,6 +64,7 @@ public class NonPlayer extends Character{
                 npc.wooMin = 0.7;
                 npc.favItemType = "Valuable Item";
                 npc.rewardItem = "rtx 3090";
+                npc.introText = "";
                 npc.catchPhrases = new String[]{"nice", "cool"};
                 break;
         }

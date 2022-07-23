@@ -6,12 +6,12 @@ public class NonPlayerTests {
     @Test
     public void genNonPlayer_joe_should_return_joe(){
         //Arrange
-        NonPlayer npc = NonPlayer.genNonPlayer("Joe");
+        NonPlayer npc = NonPlayer.genNonPlayer("Tobey Maguire");
         //Act
         String npcName = npc.getName();
         int maxHealth = npc.getMaxHealth();
         //Assert
-        Assertions.assertEquals("Joe", npcName);
+        Assertions.assertEquals("Tobey Maguire", npcName);
         Assertions.assertEquals(10, maxHealth);
     }
 

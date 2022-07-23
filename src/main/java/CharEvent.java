@@ -52,19 +52,19 @@ public class CharEvent extends Event {
     //Returns true for dead and false for not dead
 
     public void nonPlayerKilled(Player player, NonPlayer non) {
+        player.setMoney(player.getMoney() + non.getMoney());
+        OutrunHell.print(non.getName() + " had $" + non.getMoney() + ". Finders keepers!");
+        OutrunHell.print(player.getName() + " now has $" + player.getMoney() + ".");
         if (non.getRewardItem().equals("none")) {
             return;
         }
+        OutrunHell.divider();
         if (player.hasInventorySpace()) {
             player.addToInventory(non.getRewardItem());
             OutrunHell.print(non.getName() + " had " + non.getRewardItem() + " in their inventory, so " + player.getName() + " picked it up.");
         } else {
             OutrunHell.print("Player inventory is full, so " + non.getRewardItem() + " was left behind.");
         }
-        player.setMoney(player.getMoney() + non.getMoney());
-        OutrunHell.divider();
-        OutrunHell.print(non.getName() + " had $" + non.getMoney() + ". Finders keepers!");
-        OutrunHell.print(player.getName() + " now has $" + player.getMoney() + ".");
     }
 
     public static void playerKilledMessage() {
@@ -222,7 +222,7 @@ public class CharEvent extends Event {
     public static void runCharEvent(CharEvent event, Player player, NonPlayer npc) {
         OutrunHell.print(event.stageSettingText);
         OutrunHell.divider();
-        OutrunHell.print(npc.getName() + " wants to fight!");
+        OutrunHell.print(npc.getIntroText());
         OutrunHell.divider();
         OutrunHell.print(player.getName() + " has " + player.getHealth() + " health and $" + player.getMoney() + ".");
         OutrunHell.divider();
@@ -267,6 +267,8 @@ public class CharEvent extends Event {
                 //Quit program
                 break;
             }
+            OutrunHell.print(npc.getName() + ": " + npc.getCatchPhrase());
+            OutrunHell.divider();
         }
         OutrunHell.divider();
         OutrunHell.print(event.conclusionText);

@@ -13,15 +13,15 @@ public class OutrunHell {
         player.addToInventory("first aid kit");
         player.addToInventory("grenade");
         NonPlayer npc;
-        npc = new NonPlayer("Freddy", 10, 2, 30, 0.8, "Tech Item", new String[]{"cool", "neat"}, "rtx 3090");
+        npc = NonPlayer.genNonPlayer("Tobey Maguire");
 
         //Event generation
         ShopEvent shop = new ShopEvent("Shop event alert!", "End of shop event");
         CharEvent event = new CharEvent("Start of event 1", "Conclusion to event 1");
 
         //Prompting and resolving player choice
-        ShopEvent.runShopEvent(shop, player);
         CharEvent.runCharEvent(event, player, npc);
+        ShopEvent.runShopEvent(shop, player);
     }
 
     public static void wait(int s) {
